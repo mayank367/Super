@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Business Results</title>
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    .table {
+      border-collapse: separate;
+      border-spacing: 0;
+      border-radius: 10px;
+    }
+    
+    th {
+      background-color: #343a40 !important;
+      color: #fff !important;
+    }
+
+    .table-striped > tbody > tr:nth-of-type(odd) {
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+
+    .table-hover tbody tr:hover {
+      background-color: #f1f1f1;
+    }
+
+    .table {
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-success {
+      background-color: #28a745;
+      border-color: #28a745;
+    }
+
+    .btn-success:hover {
+      background-color: #218838;
+      border-color: #1e7e34;
+    }
+    
+    .btn {
+      padding: 0.5rem 1.5rem;
+    }
+
+    .btn-lg {
+      font-size: 1.25rem;
+    }
+
+    .shadow {
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Centering elements */
+    .container {
+      margin-top: 50px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2 class="text-center my-4">Results for {{ location }}</h2>
+  <div class="container">
+    <div class="table-responsive">
+      <table class="table table-striped table-hover table-bordered shadow">
+        <thead class="thead-dark">
+          <tr>
+            
+            <th scope="col">Name</th>
+            <th scope="col">Address</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Email</th>
+            <th scope="col">Website</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for business in businesses %}
+          <tr>
+            <td>{{ business.name }}</td>
+            <td>{{ business.address }}</td>
+            <td>{{ business.phone }}</td>
+            <td>{{ business.email }}</td>
+            <td><a href="{{ business.website }}" target="_blank">{{ business.website }}</a></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <div class="text-center my-4">
+      <a href="{% url 'download_excel' %}" class="btn btn-lg btn-success shadow">Download Excel</a>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
